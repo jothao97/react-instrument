@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react';
 import {BrowserRouter as Routes, Router, Route, Link} from 'react-router-dom';
 import {useState} from 'react'
+import InstrumentList from './components/InstrumentList';
+
 
 const App= () => {
 
@@ -30,16 +32,24 @@ const App= () => {
     const updatedItems = instrumentItems.map(instrumentItems => instrumentItems.id === item.id ? {...instrumentItems, isFavorite: ! instrumentItems.isFavorite} : instrumentItems)
   };
   setInstrumentItems(updatedItems);
+}
 
   return (
     <Router>
       <div className="App">
         <nav>
           <Link to='/'>Home</Link>
-          <Link to=''>Guitars</Link>
-          <Link to=''>Keyboards</Link>
-          <Link to=''>Drums</Link>
+          <Link to='/guitar'>Guitars</Link>
+          <Link to='/keyboard'>Keyboards</Link>
+          <Link to='/drum'>Drums</Link>
         </nav>
+        <Routes>
+          <Route path= "/" element = {<InstrumentList instrumentItems={instrumentItems} addToCart={addToCart} removeFromCart={removeFromCart} toggleFavorite={toggleFavortie}/> }/>
+          <Route path= "/" element = {<InstrumentList instrumentItems={instrumentItems.filter(items.category === 'guitar')} addToCart={addToCart} removeFromCart={removeFromCart} toggleFavorite={toggleFavortie}/> }/>
+          <Route path= "/" element = {<InstrumentList instrumentItems={instrumentItems.filter(items.category === 'keyboard')} addToCart={addToCart} removeFromCart={removeFromCart} toggleFavorite={toggleFavortie}/> }/>
+          <Route path= "/" element = {<InstrumentList instrumentItems={instrumentItems.filter(items.category === 'drum')} addToCart={addToCart} removeFromCart={removeFromCart} toggleFavorite={toggleFavortie}/> }/>
+
+        </Routes>
       </div>
     </Router>
   );

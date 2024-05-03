@@ -11,3 +11,5 @@ const InstrumentItems = ({items, addToCart, removeFromCart, toggleFavorite}) => 
         </div>
     )
 }
+
+export default InstrumentItems;
